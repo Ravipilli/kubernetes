@@ -1,0 +1,50 @@
+Step-1
+github- https://github.com/Ravipilli/kubernetes/tree/master/springbootwebdemo   it is a spring boot application source code repo
+
+step-2
+git clone it locally (where you need to create a docker image and it's has all required files) it has dockerfile.
+
+step-3
+docker build cmd to build the docker image from the current files location or we can also use jenkins to create a docker image. below cmd is for creating the image directly
+
+docker build --tag hello-world:latest
+
+step-4
+create a sample.yaml file to run the pod
+sample.yaml file code-
+apiVersion: v1
+kind: Pod
+metadata:
+   name: hello-world
+spec:
+   containers:
+   - name: hello-world
+     image: hello-world:latest
+     ports:
+     - containerPort: 9844
+	 
+step-5
+run cmd to start the pod-   kubectl apply -f sample.yaml
+
+step-6
+cmd to check running pod -  kubectl get pods
+
+step-7
+cmd to check the IP of pod- kubectl describe pod "podname"  it will give you required info like IP address of pod, container name, image name etc..
+
+step-8
+run cmd- http://xx.xx.xx.x:9844  -to launch the webapp (here xx.xx.xx.xx is pod IP address)
+
+some usefull cmd-
+kubectl delete pod podname --delete the pod 
+kubectl logs -f podname -- to check the pod logs
+kubectl apply -f filename --to create a pod
+kubectl get pods -- to get the running pods
+kubectl describe pod podname -- to get the all info of pod
+ curl -kL https://xx.xx.xx.xx:port -- to verify the application
+
+	 
+
+
+
+
